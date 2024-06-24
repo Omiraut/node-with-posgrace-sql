@@ -6,7 +6,7 @@ const router = Router();
 router.get("/", controller.getStudents);
 router.get("/:id", controller.getStudentById);
 //  Post Reqests
-router.post("/", controller.addStudnet);
+router.post("/", controller.addStudent);
 
 //  PUT Requests
 router.put("/:id", controller.updateStudent);

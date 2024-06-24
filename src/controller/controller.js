@@ -1,3 +1,4 @@
+//Treditional Controller which uses normal Postgrace Database
 //imported Database Coeenction here
 const pool = require("../db/db");
 const studentService = require("../service/service");
@@ -6,7 +7,7 @@ const queries = require("../db/queries");
 
 //function to get all students
 const getStudents = (req, res) => {
-  studentService.addStudnet(req, res);
+  studentService.getStudents(req, res);
   // used queries to import querry
   // pool.query(queries.getAllStudents, (error, results) => {
   //   if (error) throw error;

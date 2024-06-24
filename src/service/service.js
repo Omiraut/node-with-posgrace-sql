@@ -21,24 +21,28 @@ const getStudentById = (req, res) => {
 };
 
 const addStudent = (req, res) => {
-  const { name, email, age, dob } = req.body;
+  if (Object.keys(req.body).length === 0) {
+    res.status(400).send("Json is not Sent");
+  } else {
+    const { name, email, age, dob } = req.body;
 
-  // Check if email is exist
-  pool.query(queries.checkEmailExists, [email], (error, results) => {
-    if (error) throw error;
-    if (results.rows.length) {
-      res.send("email Already Exist : " + email);
-    } else {
-      pool.query(
-        queries.addStudnet,
-        [name, email, age, dob],
-        (error, results) => {
-          if (error) throw error;
-          res.status(201).send("Student Created Successfully");
-        }
-      );
-    }
-  });
+    // Check if email is exist
+    pool.query(queries.checkEmailExists, [email], (error, results) => {
+      if (error) throw error;
+      if (results.rows.length) {
+        res.send("email Already Exist : " + email);
+      } else {
+        pool.query(
+          queries.addStudnet,
+          [name, email, age, dob],
+          (error, results) => {
+            if (error) throw error;
+            res.status(201).send("Student Created Successfully");
+          }
+        );
+      }
+    });
+  }
 };
 
 const deleteStudent = (req, res) => {
@@ -70,7 +74,7 @@ const updateStudent = (req, res) => {
           (error, results) => {
             if (error) throw error;
             else {
-              res.status(200).send("Studnet updated Successfuly");
+              res.status(200).send("Student updated Successfuly");
             }
           }
         );
