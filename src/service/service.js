@@ -1,12 +1,10 @@
 //imported Database Coeenction here
-const pool = require("../../db");
+const pool = require("../db/db");
 
 // imported Queries here
-const queries = require("./queries");
+const queries = require("../db/queries");
 
-//function to get all students
 const getStudents = (req, res) => {
-  // used queries to import querry
   pool.query(queries.getAllStudents, (error, results) => {
     if (error) throw error;
     res.status(200).json(results.rows);
@@ -15,16 +13,14 @@ const getStudents = (req, res) => {
 };
 
 const getStudentById = (req, res) => {
-  // Extracting ID from parameter
-  const id = parseInt(req.params.id);
-  //   Passing id in paramenter of querry function to get data
-  pool.query(queries.getStudentById, [id], (error, results) => {
+  pool.query(queries.getAllStudents, (error, results) => {
     if (error) throw error;
     res.status(200).json(results.rows);
   });
+  console.log("getting Students");
 };
 
-const addStudnet = (req, res) => {
+const addStudent = (req, res) => {
   const { name, email, age, dob } = req.body;
 
   // Check if email is exist
@@ -82,10 +78,11 @@ const updateStudent = (req, res) => {
     }
   });
 };
+
 module.exports = {
   getStudents,
   getStudentById,
-  addStudnet,
+  addStudent,
   deleteStudent,
   updateStudent,
 };
