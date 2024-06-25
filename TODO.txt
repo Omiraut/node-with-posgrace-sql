@@ -1,5 +1,6 @@
  Create a Crud App                              -- Done
  Add MVC Architecture                           -- Done
- Use sequelize Liberary and Uderstand it        -- part done tables created now balance is utilizing tables to insert data
+ Use sequelize Libery make table                -- Done
+ Make Entries Without Writing Queries           -- 
 
  
